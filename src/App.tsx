@@ -1,26 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
+
 import './App.css';
 
-function App() {
+import 'bootstrap/dist/css/bootstrap.min.css';
+// import Loading from 'components/loading';
+import Home from 'container/Home';
+import { useSelector, useDispatch } from 'react-redux';
+import { GetProductThunk } from './redux/thunk/index';
+
+const Loading : React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div style={{ display: 'flex',height:'100vh', justifyContent: 'center', alignItems: 'center' }}>
+              <img src='https://i.pinimg.com/originals/71/3a/32/713a3272124cc57ba9e9fb7f59e9ab3b.gif' style={{ width: '250px', height: '250px' }} />
+      </div>
   );
 }
+
+{/* <> //generic */}
+
+const App: React.FC = () => {
+  const isLoading = useSelector((state : any) => state?.productReducer?.isloading)
+  const dispatch = useDispatch();
+  React.useEffect( () =>{
+      dispatch(GetProductThunk());
+  }, []);
+
+  return (
+    <div >
+      {isLoading ? <Loading /> : <Home />}
+    </div>
+  )
+}
+
 
 export default App;
