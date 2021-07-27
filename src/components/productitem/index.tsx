@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { Card, Button, Modal, FormControl, InputGroup } from 'react-bootstrap';
 import { Url_Image } from '../../untils/until';
 // import { ProductActiveLove } from '../../redux/actions/index';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { ProductActiveLove, CommentsProduct } from 'redux/thunk';
 import { useFormik } from 'formik';
 interface PropsProductItem {
@@ -18,6 +18,7 @@ const ProductItem: React.FC<PropsProductItem> = ({ value }) => {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
+  
     const ModalComment: React.FC<PropsComment> = ({ id }) => {
         const formik = useFormik({
             initialValues: {
