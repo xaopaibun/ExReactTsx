@@ -5,6 +5,8 @@ import { Url_Image } from '../../untils/until';
 import { useDispatch, useSelector } from 'react-redux';
 import { ProductActiveLove, CommentsProduct } from 'redux/thunk';
 import { useFormik } from 'formik';
+import Skeleton from 'react-loading-skeleton';
+import { add, deleteItemProduct } from 'redux/toolkit/ProductSlice';
 interface PropsProductItem {
     value: any,
 }
@@ -76,7 +78,7 @@ const ProductItem: React.FC<PropsProductItem> = ({ value }) => {
         <Card style={{ width: '30%' }}>
             <Card.Img variant="top" width={'100%'} height='auto' src={Url_Image + value.images} />
             <Card.Body>
-                <Card.Title><h1>{value.TenCoffee}</h1></Card.Title>
+                <Card.Title><h1>{value.TenCoffee }</h1></Card.Title>
                 {
                     value.comments.length > 0 ?
                         value.comments.map((val: any) => (<p key={val._id}><b>{val.name}</b> : {val.content}</p>)) : <div />
@@ -92,6 +94,9 @@ const ProductItem: React.FC<PropsProductItem> = ({ value }) => {
                     <Button variant="primary" onClick={handleShow}>
                         Comment
                     </Button>
+                    {/* <Button variant="primary" onClick={() => dispatch(add({id : value._id, name : 'abc'}))} >
+                        Delete
+                    </Button> */}
                 </div>
             </Card.Body>
             <ModalComment id={value._id} />

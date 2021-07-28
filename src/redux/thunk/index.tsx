@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import { GetProduct } from '../../services/index';
-import { AsyncThunk } from "@reduxjs/toolkit"
+
 
 
 export const GetProductThunk = createAsyncThunk(
