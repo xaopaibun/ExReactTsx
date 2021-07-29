@@ -54,7 +54,6 @@ const Ex: React.FC = () => {
                     }}
                     onSubmit={(values) => {
                         dispatch(ItemAdded({ ...values, _id: Math.random().toString() }))
-                       
                     }}
                 >
                     {props => (
