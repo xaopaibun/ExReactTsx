@@ -1,14 +1,10 @@
 import React from 'react';
 import SwipeableViews from 'react-swipeable-views';
-import { makeStyles, Theme, useTheme } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
+import {  Theme, useTheme } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
-import { Input, TextField, Button, withStyles, createStyles } from '@material-ui/core';
+import { withStyles, createStyles } from '@material-ui/core';
 import { useStyles } from './style';
-import { purple } from '@material-ui/core/colors';
 import Login from './login';
 import NewUser from './newuser';
 

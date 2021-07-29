@@ -65,14 +65,16 @@ const Authen: React.FC = () => {
             <Grid container >
                 <Grid item xs={7} className={classes.boxLeft}>
                     <div className={classes.boxcenter}>
+                   
                         <img src="https://flatlogic.github.io/react-material-admin/static/media/logo.3d432ca2.svg" className={classes.imglogo} />
                         <p className={classes.logoText}> Material Admin </p>
                     </div>
                 </Grid>
                 <Grid item xs={5} className={classes.boxRight}>
                     <AuthenTabs />
-                    <p className={classes.copy_right}> © 2014-2021 Flatlogic, LLC. All rights reserved</p>
-
+                   
+                        <p className={classes.copy_right}> © 2014-2021 Flatlogic, LLC. All rights reserved</p>
+                    
                 </Grid>
 
             </Grid>

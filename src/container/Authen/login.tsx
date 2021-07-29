@@ -3,7 +3,7 @@ import { useStyles } from "./style";
 
 import { purple } from "@material-ui/core/colors";
 import { useHistory } from "react-router-dom";
-
+import { Formik } from 'formik';
 interface TabPanelProps {
     children?: React.ReactNode;
     dir?: string;
@@ -13,7 +13,6 @@ interface TabPanelProps {
 
 const ColorButton = withStyles((theme: Theme) => ({
     root: {
-       
         textTransform: 'none',
         textAlign:"center",
         color: theme.palette.getContrastText(purple[500]),
@@ -28,9 +27,6 @@ const ColorButton = withStyles((theme: Theme) => ({
     const { children, value, index, ...other } = props;
     const classes = useStyles();
     const history = useHistory();
-    const submit = () =>{
-        history.push('/Home');
-    }
     return (
         <div>
             <h1 className={classes.jss8}>Good Morning, User</h1>
@@ -49,26 +45,48 @@ const ColorButton = withStyles((theme: Theme) => ({
                     <div className={classes.netdut} />
                 </div>
             </div>
+            <Formik
+                initialValues = {{
+                    email: "vanquy33338888@gmail.com",
+                    password: "vanquy",
+                  }}
+                onSubmit={(values, actions) => {
+                    setTimeout(() => {
+                        history.push('/Home');
+                        actions.setSubmitting(false);
+                    }, 1500);
+                }}
+                >
+                     {props => (
+            <form onSubmit={props.handleSubmit}>
             <TextField
                 placeholder="Email adress"
                 fullWidth
+                name="email"
+                type ='email'
                 className={classes.TextField}
-                value ="vanquy33338888@gmail.com"
+                value={props.values.email}
             />
             <TextField
                 placeholder="Password"
                 fullWidth
                 className={classes.TextField}
-                value="vanquy"
                 type ='password'
+                name="password"
+                value={props.values.password}
             />
             <div className={classes.box_btn}>
-                <ColorButton variant="contained" color="primary" onClick={() => submit()}>
-                    LOGIN
+                <ColorButton variant="contained" type ="submit" color="primary" >
+                    { props.isSubmitting ? 
+                    "Loading..."
+                    : "LOGIN"}
+                  
                 </ColorButton>
-                
                 <Button>Forget Password</Button>
             </div>
+            </form>
+             )}
+            </Formik>
 
         </div>
     );

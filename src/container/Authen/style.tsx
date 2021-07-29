@@ -2,7 +2,7 @@ import { makeStyles, Theme, useTheme } from '@material-ui/core/styles';
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
         width: '320px',
-        height: '70%',
+        height: 'auto',
         color: '#4A4A4A'
     },
     jss8: {
@@ -37,6 +37,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     },
     copy_right:{
         color: "#536DFE",
+        height: '20px',
         position : "absolute",
         bottom: 16,
         
