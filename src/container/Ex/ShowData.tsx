@@ -5,6 +5,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import useStyles from './style';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteItem, ExSelectors, itemEdit, showModal } from "redux/toolkit/ExSlice";
+import React from "react";
 const StyledTableCell = withStyles((theme: Theme) =>
     createStyles({
         head: {
@@ -35,7 +36,10 @@ const ShowData: React.FC = () => {
     }
     const dispatch = useDispatch();
     const classes = useStyles();
+  
     const Exdata = useSelector(ExSelectors.selectAll);
+
+    console.log('re-render component Show Data')
     return (
         <TableContainer component={Paper}>
             <Table className={classes.table} aria-label="customized table">
@@ -51,7 +55,7 @@ const ShowData: React.FC = () => {
                 <TableBody>
                     {
                         Exdata && Exdata.map((val, index) => (
-                            <StyledTableRow>
+                            <StyledTableRow key={val._id}>
                                 <StyledTableCell align="center" component="th" scope="row">
                                     {index + 1}
                                 </StyledTableCell>
