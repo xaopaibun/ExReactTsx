@@ -6,9 +6,12 @@ import AddIcon from '@material-ui/icons/Add';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { useDispatch } from 'react-redux';
 import useStyles from './style';
+
+
 const AddItem: React.FC = () => {
     const dispatch = useDispatch();
     const classes = useStyles();
+    console.log('re-render component AddItem')
     return (
         <Formik
             initialValues={{
@@ -23,6 +26,7 @@ const AddItem: React.FC = () => {
                 <form onSubmit={props.handleSubmit}>
                     <Grid container spacing={1}>
                         <Grid item xs={3}>
+                          
                             <TextField
                                 placeholder="Nhap name"
                                 name="name"
