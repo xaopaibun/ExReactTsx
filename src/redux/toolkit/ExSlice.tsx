@@ -3,9 +3,12 @@ import {
   createSlice,
 } from '@reduxjs/toolkit'
 
-
+interface initState {
+  itemEdit: any,
+  isShowModal: boolean,
+}
 interface Ex {
-    _id: any,
+  _id: any,
   name: any,
   age: any,
   gender: any
@@ -15,25 +18,25 @@ const ExAdapter = createEntityAdapter<Ex>({
 });
 
 const ExSlice = createSlice({
-  name: 'listproduct',
-  initialState: ExAdapter.getInitialState({
-    itemEdit:{}
+  name: 'listtodo',
+  initialState: ExAdapter.getInitialState<initState>({
+    itemEdit: {}, isShowModal: false,
   }),
   reducers: {
     deleteItem: ExAdapter.removeOne,
     ItemAdded: ExAdapter.addOne,
     ItemUpdate: ExAdapter.updateOne,
     deleteAll: ExAdapter.removeAll,
-    itemEdit(state, action){
-      state.itemEdit = action.payload; 
+    showModal(state) {
+      state.isShowModal = !state.isShowModal;
+    },
+    itemEdit(state, action) {
+      state.itemEdit = action.payload;
     }
   },
 })
-
 export const ExSelectors = ExAdapter.getSelectors((state: any) => state.ExReducer);
-
-export const { deleteItem, ItemUpdate, ItemAdded, deleteAll, itemEdit} = ExSlice.actions;
-
+export const { deleteItem, ItemUpdate, ItemAdded, deleteAll, itemEdit, showModal } = ExSlice.actions;
 const { reducer: ExReducer } = ExSlice;
 
 export default ExReducer;

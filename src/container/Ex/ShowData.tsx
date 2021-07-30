@@ -4,7 +4,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import useStyles from './style';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteItem, ExSelectors, itemEdit } from "redux/toolkit/ExSlice";
+import { deleteItem, ExSelectors, itemEdit, showModal } from "redux/toolkit/ExSlice";
 const StyledTableCell = withStyles((theme: Theme) =>
     createStyles({
         head: {
@@ -30,6 +30,7 @@ const StyledTableRow = withStyles((theme: Theme) =>
 
 const ShowData: React.FC = () => {
     const EditItem = (val: any) => {
+        dispatch(showModal())
         dispatch(itemEdit(val))
     }
     const dispatch = useDispatch();
