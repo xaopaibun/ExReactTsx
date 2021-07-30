@@ -1,8 +1,6 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice,createEntityAdapter, PayloadAction } from '@reduxjs/toolkit'
 
 import { GetProduct } from '../../services/index';
-import { AsyncThunk } from "@reduxjs/toolkit"
-
 
 export const GetProductThunk = createAsyncThunk(
     'product/CallApiGetProduct',
@@ -16,10 +14,12 @@ interface ProductState {
     error: string,
     isloading: boolean;
 }
+
 const initialState = { product: [], isloading: true, error: "" } as ProductState;
+
 const productSlice = createSlice({
     name: 'product',
-    initialState: initialState,
+    initialState:  initialState,
     reducers: {
         ProductActiveLove(state, action) {
             state.product.map((item) => {
@@ -28,6 +28,7 @@ const productSlice = createSlice({
                 }
             }
             )
+            localStorage.setItem('ListProduct', JSON.stringify(state.product))
         },
         CommentsProduct(state, action) {
             state.product.map((item) => {
@@ -36,7 +37,10 @@ const productSlice = createSlice({
                 }
             }
             )
-
+             localStorage.setItem('ListProduct', JSON.stringify(state.product))
+        },
+        UpdateProductLocal(state, action){
+            state.product = action.payload;
         }
     },
     extraReducers: {
@@ -56,6 +60,6 @@ const productSlice = createSlice({
     }
 })
 
-export const { ProductActiveLove, CommentsProduct } = productSlice.actions;
+export const { ProductActiveLove, CommentsProduct, UpdateProductLocal  } = productSlice.actions;
 const { reducer: productReducer } = productSlice;
 export default productReducer;

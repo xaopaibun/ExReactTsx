@@ -2,9 +2,11 @@ import React, { useState, useRef } from 'react';
 import { Card, Button, Modal, FormControl, InputGroup } from 'react-bootstrap';
 import { Url_Image } from '../../untils/until';
 // import { ProductActiveLove } from '../../redux/actions/index';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { ProductActiveLove, CommentsProduct } from 'redux/thunk';
 import { useFormik } from 'formik';
+import Skeleton from 'react-loading-skeleton';
+
 interface PropsProductItem {
     value: any,
 }
@@ -18,6 +20,7 @@ const ProductItem: React.FC<PropsProductItem> = ({ value }) => {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
+  
     const ModalComment: React.FC<PropsComment> = ({ id }) => {
         const formik = useFormik({
             initialValues: {
@@ -75,7 +78,7 @@ const ProductItem: React.FC<PropsProductItem> = ({ value }) => {
         <Card style={{ width: '30%' }}>
             <Card.Img variant="top" width={'100%'} height='auto' src={Url_Image + value.images} />
             <Card.Body>
-                <Card.Title><h1>{value.TenCoffee}</h1></Card.Title>
+                <Card.Title><h1>{value.TenCoffee }</h1></Card.Title>
                 {
                     value.comments.length > 0 ?
                         value.comments.map((val: any) => (<p key={val._id}><b>{val.name}</b> : {val.content}</p>)) : <div />
